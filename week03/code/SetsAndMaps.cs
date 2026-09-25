@@ -100,7 +100,40 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+
+        // Remove spaces and convert to lowercase
+        word1 = word1.Replace(" ", "").ToLower();
+        word2 = word2.Replace(" ", "").ToLower();
+        if (word1.Length != word2.Length)
+        {
+            return false; // If lengths are different, they cannot be anagrams
+        }
+        var charCount = new Dictionary<char, int>();
+        foreach (var c in word1)
+        {
+            if (charCount.ContainsKey(c))
+            {
+                charCount[c]++;
+            }
+            else
+            {
+                charCount.Add(c, 1);
+            }
+        }
+        foreach (var c in word2)
+        {
+            if (!charCount.ContainsKey(c))
+            {
+                return false;
+            }
+            charCount[c]--;
+            if (charCount[c] == 0)
+            {
+                charCount.Remove(c);
+            }
+        }
+
+        return charCount.Count == 0; // If the dictionary is empty, they are anagrams
     }
 
     /// <summary>
