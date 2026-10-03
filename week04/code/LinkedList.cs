@@ -33,6 +33,23 @@ public class LinkedList : IEnumerable<int>
     public void InsertTail(int value)
     {
         // TODO Problem 1
+        // Create new node
+        Node newNode = new(value);
+
+        // If the list is empty, both head and tail point to the new node
+        if (_tail is null)
+        {
+            _head = newNode;
+            _tail = newNode;
+        }
+        // Otherwise, connect the new node to the current tail
+        else
+        {
+            newNode.Prev = _tail;   // Connect new node back to current tail
+            _tail.Next = newNode;   // Connect current tail forward to new node
+            _tail = newNode;        // Update tail reference
+        }
+
     }
 
 
