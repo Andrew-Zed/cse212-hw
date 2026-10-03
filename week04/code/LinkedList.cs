@@ -82,6 +82,18 @@ public class LinkedList : IEnumerable<int>
     public void RemoveTail()
     {
         // TODO Problem 2
+        // If the list has 0 or 1 node, the result is an empty list
+        if (_head == _tail)
+        {
+            _head = null;
+            _tail = null;
+        }
+        // If the list has more than one node
+        else if (_tail is not null)
+        {
+            _tail.Prev!.Next = null; // Disconnect tail from previous node
+            _tail = _tail.Prev;     // Move tail back one node
+        }
     }
 
     /// <summary>
