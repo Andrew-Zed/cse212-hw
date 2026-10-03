@@ -1,4 +1,5 @@
 using System.Collections;
+using Microsoft.VisualBasic;
 
 public class LinkedList : IEnumerable<int>
 {
@@ -214,7 +215,13 @@ public class LinkedList : IEnumerable<int>
     public IEnumerable Reverse()
     {
         // TODO Problem 5
-        yield return 0; // replace this line with the correct yield return statement(s)
+        var curr = _tail;       // Start at the end of the list
+
+        while (curr is not null)
+        {
+            yield return curr.Data; // Provide the current value
+            curr = curr.Prev;       // Move backward through the list
+        }
     }
 
     public override string ToString()
